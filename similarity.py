@@ -28,6 +28,33 @@ with open('cleaned_documents.csv', 'r') as csvfile:
 docTermMatrix = []
 
 
+single = documents[0]
+
+# print(single)
+
+
+
+     
+print(len(single[1]))
+# print( len(docTermMatrix))
+
+
+'''
+Approach:
+
+First Try:
+    1. Iterate through the documents and gather all words that are distinct ? 
+
+    2. then iterate the same way but if word is in the other list then we add a 1 to that specific space
+'''
+
+for singleDoc in documents:
+  for words in singleDoc[1:2]:
+    for i in words.split(' '):
+      if i not in docTermMatrix:
+        docTermMatrix.append([i])
+
+print(docTermMatrix[0])
 # Compare the pairwise cosine similarities and store the highest one
 # Use cosine_similarity([X], [Y]) to calculate the similarities between 2 vectors
 # --> Add your Python code here
