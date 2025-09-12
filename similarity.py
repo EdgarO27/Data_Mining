@@ -26,47 +26,78 @@ with open('cleaned_documents.csv', 'r') as csvfile:
 #You must identify each distinct word in the collection using the white space as your character delimiter.
 #--> add your Python code here
 
-docTermMatrix = []
 
-# for singleDoc in documents:
-#   for words in singleDoc[1:2]:
-#     for i in words.split(' '):
-#       if i not in docTermMatrix:
-#         docTermMatrix.append([i])
 
-#   #Iterate through documents one by one 
+#This holds all distinct words found in the documents
+wordList = []
 
-for singleDocument in documents[0:1]:
-  wordList = []
-#   #Iterate through all words skip the first index of document
-#   #since document has a size of 2
-#   #Outline :    ['1', 'word1 word2 word3 word4 word5']
-  for letters in singleDocument[1:]:
-    #   # We are iterating through the index of words 
-    #   # So now we have to create each entry based on the size of a specific document
-    #   #Make a word list that will add words 
-    #   #
-    for i in letters.split(' '):
+
+# #goes through a single doc
+for singleDoc in documents[4:6]:
+  #Make a new word list for every document to then make it the space we need for columns for each document
+  
+  #Looking inside a single document we skip the first index since its the number place of that document
+  for words in singleDoc[1:]:
+
+    #Here we need to get length of the word list to make the columns 
+    for i in words.split(' '):
+
+      #checks if word is part of columns
+      if i not in wordList:
         wordList.append(i)
 
-      
-        # if i not in docTermMatrix:
-        #   docTermMatrix.append([0])
-        # else:
-        #    docTermMatrix.append(1)
+    # print(wordList)
+  print(len(wordList))
+
+docTermMatrix = []
 
 
-for singleDocument in documents
-    
-    
+'''
+CSV 
 
-print(wordList[0])
+'''
+
+for singleDoc in range(0, 2):
+#NESTED LIST COMPREHENSION
+
+  #Appending a list inside a list
+  docTermMatrix.append([1 if i in wordList else 0 for single in documents[:3] for word in single[1:] for i in word.split(' ')])
 
 
 
+print(f'This is docuTermMartix indexed document index: {0}')
+
+print(docTermMatrix[1])
+
+print(f'This is the length of the index document with binary encoding')
+
+print(len(docTermMatrix[1]))
+
+print(f'This is the length of all the documents inside: {0}')
+
+print(len(docTermMatrix))
+
+print(f'This is the length of the wordList: {0}')
+
+print(len(wordList))
 
 
+for i in docTermMatrix:
 
+  print(i)
+  print()
+  print(len(i))
+test = docTermMatrix[1]
+print(f'{" ".join(wordList[:7])}')
+
+for i in test[:7]:
+  print(i, " ")
+  
+
+# strings = [ ['foo', 'bar'], ['baz', 'taz'], ['w', 'koko'] ]
+# test = [ (letter, idx) for idx, lst in enumerate(strings) for word in lst if len(word)>2 for letter in word]
+
+# print(test)
 
 
 
