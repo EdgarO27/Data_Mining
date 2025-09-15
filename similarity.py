@@ -31,9 +31,9 @@ with open('cleaned_documents.csv', 'r') as csvfile:
 #This holds all distinct words found in the documents
 wordList = []
 
-
+#     #           STEP 1
 # #goes through a single doc
-for singleDoc in documents[4:6]:
+for singleDoc in documents[0:1]:
   #Make a new word list for every document to then make it the space we need for columns for each document
   
   #Looking inside a single document we skip the first index since its the number place of that document
@@ -56,7 +56,7 @@ docTermMatrix = []
 CSV 
 
 '''
-
+#     #     STEP 2
 for singleDoc in range(0, 2):
 #NESTED LIST COMPREHENSION
 
@@ -64,8 +64,10 @@ for singleDoc in range(0, 2):
   docTermMatrix.append([1 if i in wordList else 0 for single in documents[:3] for word in single[1:] for i in word.split(' ')])
 
 
+#       # CURRENT OUTPUTS
 
-print(f'This is docuTermMartix indexed document index: {0}')
+
+print(f'This is docuTermMartix indexed document index: ')
 
 print(docTermMatrix[1])
 
@@ -73,11 +75,11 @@ print(f'This is the length of the index document with binary encoding')
 
 print(len(docTermMatrix[1]))
 
-print(f'This is the length of all the documents inside: {0}')
+print(f'This is the length of all the documents inside: ')
 
 print(len(docTermMatrix))
 
-print(f'This is the length of the wordList: {0}')
+print(f'This is the length of the wordList: ')
 
 print(len(wordList))
 
@@ -100,7 +102,48 @@ for i in test[:7]:
 # print(test)
 
 
+#STEPS
 
+# # 1
+# We split our documents from its number and grab the number of documents we have 
+    # We have 401 documents in cleaned_documents.csv ( column seperated Values)
+'''
+  We have to understand that in this process we look at all the words in the documents 
+  This helps us gather all distinct words that helps us add as a column 
+  For example,
+        Lets say we have the word budget its going to look at every row if it has budget and will make it a 1 if it appears regardless how many times
+'''
+
+# # 2
+# We then use nested list comphrehension 
+'''
+  To build a matrix we have to understand that we must have one big list that for every row has a list with its own count of words 
+  DocMatrix = [ [doc1] ,  [doc2] ,  [doc3]  ,  [doc4] ]
+'''
+
+# # 3
+# We have to then go through all all documents and understand what the outputs looks like
+'''
+  In our output we have to understand if our current Hard coded baby algo works 
+    To test,
+      I will start with document 1 and look at the number of 1's it shows if it shows a single zero that means i have a bug somewhere 
+      since it has only gathered words from document 1
+'''
+
+
+# # 4
+# Use COSINE SIMILARITIES 
+
+'''
+Look at Scikit learn library to uderstand how to make sure every document is counted 
+
+COSINE SIMIALIRTY IS DEFINED :
+  1. TWO document Vectors ( d1,  d2 )
+  2. then,   cos( d1  , d2  ) = ( d1 * d2 ) //  ||d1|| ||d2||
+  3. (  d1  * d2  ) indicates dot product
+  4. ||d|| length of vector d
+
+'''
 # Compare the pairwise cosine similarities and store the highest one
 # Use cosine_similarity([X], [Y]) to calculate the similarities between 2 vectors
 # --> Add your Python code here
