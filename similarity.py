@@ -12,7 +12,7 @@
 # Importing some Python libraries
 import csv
 from sklearn.metrics.pairwise import cosine_similarity
-
+import time
 documents = []
 
 #reading the documents in a csv file
@@ -24,78 +24,137 @@ with open('cleaned_documents.csv', 'r') as csvfile:
 
 #Building the document-term matrix by using binary encoding.
 #You must identify each distinct word in the collection using the white space as your character delimiter.
-#--> add your Python code here
 
 
+#Hold the matrix of all binary classification
+docTermMatrix = []
 
-#This holds all distinct words found in the documents
+#This holds all distinct words found in the documents for columns based on each row 
 wordList = []
+
+
+
+#------------------------------------------------------------------------------------
 
 #     #           STEP 1
 # #goes through a single doc
-for singleDoc in documents[0:1]:
+for singleDoc in documents:
   #Make a new word list for every document to then make it the space we need for columns for each document
   
-  #Looking inside a single document we skip the first index since its the number place of that document
+  #document [1, [ words here ] ] we skip past the number of document since the count of rows can be done with python 
   for words in singleDoc[1:]:
 
-    #Here we need to get length of the word list to make the columns 
+    # We grab words here from the long string and extract each while taking out spaces
     for i in words.split(' '):
 
-      #checks if word is part of columns
+      #checks if word is already apart from wordLisr
       if i not in wordList:
         wordList.append(i)
 
-    # print(wordList)
-  print(len(wordList))
 
-docTermMatrix = []
+
+print("Part one done")
+
+#OUR MATRIX WE make the same amount of Docuemnts with equal amount of indexes
+
+for _ in documents:
+
+  docTermMatrix.append([0] * len(wordList))
+
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+
+#     #           STEP 2
 
 
 '''
-CSV 
+Doctermmatrix has same amount of documents to counteract errors in cosine similarity
+
+    FIRST ITERATION OF BINARY CLASSIFICATION ALGO
+
+    1.Use document to iterate through all docs
+
+    2.then we need to iterate through a doc one by one 
+
 
 '''
-#     #     STEP 2
-for singleDoc in range(0, 2):
-#NESTED LIST COMPREHENSION
 
-  #Appending a list inside a list
-  docTermMatrix.append([1 if i in wordList else 0 for single in documents[:3] for word in single[1:] for i in word.split(' ')])
+#FIRST ITERATION
 
 
-#       # CURRENT OUTPUTS
+#DOCUMENT TERM WORD MATRIX 
+
+    #COLUMN   WORD1 WORD2 WORD3 WORD4 WORD5 WORD6
+#ROW
+
+#DOC1         1       0
+
+#DOC2
+
+#DOC3
+
+#DOC4
+
+#DOC5
+
+#     DOCUMENTS USING RANGE TO ACCESS DOCUMENtMATRIX by row 
+for i in range(len(documents)):
+  dummy = documents[i]
+  #try to iterate through by Columns 
+  # we use enumerate for word List to go through list 
+  for index, words in enumerate(wordList):
+
+    for term in dummy[1:]:
+      if words in term:
+        docTermMatrix[i][index] = 1
 
 
-print(f'This is docuTermMartix indexed document index: ')
-
-print(docTermMatrix[1])
-
-print(f'This is the length of the index document with binary encoding')
-
-print(len(docTermMatrix[1]))
-
-print(f'This is the length of all the documents inside: ')
-
-print(len(docTermMatrix))
-
-print(f'This is the length of the wordList: ')
-
-print(len(wordList))
+      
+        
 
 
-for i in docTermMatrix:
+      
+print(docTermMatrix[0])
 
-  print(i)
-  print()
-  print(len(i))
-test = docTermMatrix[1]
-print(f'{" ".join(wordList[:7])}')
 
-for i in test[:7]:
-  print(i, " ")
+
+# for singleDoc in range(0, len(documents)):
+# #NESTED LIST COMPREHENSION
+
+#   #Appending a list inside a list
+#   docTermMatrix.append([1 if i in wordList else 0 for single in documents for word in single[1:] for i in word.split(' ')])
+
+print("Part 2 of Main codebase")
+
+#Test Outputs
+
+
+
+fin = cosine_similarity(docTermMatrix)
+
+
+
+print(fin)
+
+# for i in docTermMatrix:
+
+#   print(i)
+#   print()
+#   print(len(i))
+# test = docTermMatrix[1]
+# print(f'{" ".join(wordList[:7])}')
+
+# for i in test[:7]:
+#   print(i, " ")
   
 
+
+
+
+
+
+#EXAMPLE FOR NESTED COMPREHENSION
 # strings = [ ['foo', 'bar'], ['baz', 'taz'], ['w', 'koko'] ]
 # test = [ (letter, idx) for idx, lst in enumerate(strings) for word in lst if len(word)>2 for letter in word]
 
@@ -142,8 +201,15 @@ COSINE SIMIALIRTY IS DEFINED :
   2. then,   cos( d1  , d2  ) = ( d1 * d2 ) //  ||d1|| ||d2||
   3. (  d1  * d2  ) indicates dot product
   4. ||d|| length of vector d
+  5. Python Library defines the use of COSINE_SIMILARITY ( X, Y ) 
+    needs to have 2d array
+  NOTE:
+    We have to see how to find the most common similarities by each document
 
 '''
+start_time = time.time()
+print(time.time()- start_time)
+
 # Compare the pairwise cosine similarities and store the highest one
 # Use cosine_similarity([X], [Y]) to calculate the similarities between 2 vectors
 # --> Add your Python code here
