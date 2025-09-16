@@ -39,6 +39,7 @@ wordList = []
 #     #           STEP 1
 # #goes through a single doc
 for singleDoc in documents:
+for singleDoc in documents:
   #Make a new word list for every document to then make it the space we need for columns for each document
   
   #document [1, [ words here ] ] we skip past the number of document since the count of rows can be done with python 
@@ -144,7 +145,14 @@ print(fin)
 #   print(len(i))
 # test = docTermMatrix[1]
 # print(f'{" ".join(wordList[:7])}')
+#   print(i)
+#   print()
+#   print(len(i))
+# test = docTermMatrix[1]
+# print(f'{" ".join(wordList[:7])}')
 
+# for i in test[:7]:
+#   print(i, " ")
 # for i in test[:7]:
 #   print(i, " ")
   
