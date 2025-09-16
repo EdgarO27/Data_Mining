@@ -30,10 +30,10 @@ with open('cleaned_documents.csv', 'r') as csvfile:
 
 #This holds all distinct words found in the documents
 wordList = []
-
+docTermMatrix = []
 #     #           STEP 1
 # #goes through a single doc
-for singleDoc in documents[0:1]:
+for singleDoc in documents:
   #Make a new word list for every document to then make it the space we need for columns for each document
   
   #Looking inside a single document we skip the first index since its the number place of that document
@@ -47,53 +47,70 @@ for singleDoc in documents[0:1]:
         wordList.append(i)
 
     # print(wordList)
-  print(len(wordList))
+print(len(wordList))
 
-docTermMatrix = []
+
+# create the same number of arrays for each document
+for _ in documents:
+  docTermMatrix.append([0]* len(wordList))
+
+
+
 
 
 '''
 CSV 
 
 '''
-#     #     STEP 2
-for singleDoc in range(0, 2):
-#NESTED LIST COMPREHENSION
 
-  #Appending a list inside a list
-  docTermMatrix.append([1 if i in wordList else 0 for single in documents[:3] for word in single[1:] for i in word.split(' ')])
+print(docTermMatrix[1])
+
+
+
+#     #     STEP 2
+
+
+
+# #we go through all documents again
+# for singleDoc in documents:
+# #NESTED LIST COMPREHENSION
+
+  
+
+#   #Appending a list inside a list
+#   docTermMatrix.append([1 if i in wordList else 0 for word in singleDoc[1:] for i in word.split(' ')])
 
 
 #       # CURRENT OUTPUTS
 
 
-print(f'This is docuTermMartix indexed document index: ')
+# print(f'This is docuTermMartix indexed document index: ')
 
-print(docTermMatrix[1])
+# print(docTermMatrix[1])
 
-print(f'This is the length of the index document with binary encoding')
+# print(f'This is the length of the index document with binary encoding')
 
-print(len(docTermMatrix[1]))
+# print(len(docTermMatrix))
 
-print(f'This is the length of all the documents inside: ')
+# print(f'This is the length of all the documents inside: ')
 
-print(len(docTermMatrix))
+# print(len(docTermMatrix))
 
-print(f'This is the length of the wordList: ')
+# print(f'This is the length of the wordList: ')
 
-print(len(wordList))
+# print(len(wordList))
 
 
-for i in docTermMatrix:
+# for i in docTermMatrix:
 
-  print(i)
-  print()
-  print(len(i))
-test = docTermMatrix[1]
-print(f'{" ".join(wordList[:7])}')
+#   print(i)
+#   print()
+#   print(len(i))
+# test = docTermMatrix[1]
+# print(f'{" ".join(wordList[:7])}')
 
-for i in test[:7]:
-  print(i, " ")
+# for i in test[:7]:
+#   print(i, " ")
   
 
 # strings = [ ['foo', 'bar'], ['baz', 'taz'], ['w', 'koko'] ]
@@ -144,6 +161,10 @@ COSINE SIMIALIRTY IS DEFINED :
   4. ||d|| length of vector d
 
 '''
+
+# fin = cosine_similarity(docTermMatrix,None)
+
+# print(fin)
 # Compare the pairwise cosine similarities and store the highest one
 # Use cosine_similarity([X], [Y]) to calculate the similarities between 2 vectors
 # --> Add your Python code here
