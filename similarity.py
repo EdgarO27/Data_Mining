@@ -36,8 +36,18 @@ wordList = []
 
 #------------------------------------------------------------------------------------
 
-#     #           STEP 1
-# #goes through a single doc
+#STEPS
+
+# # 1
+# We split our documents from its number and grab the number of documents we have 
+    # We have 401 documents in cleaned_documents.csv ( column seperated Values)
+'''
+  We have to understand that in this process we look at all the words in the documents 
+  This helps us gather all distinct words that helps us add as a column 
+  For example,
+        Lets say we have the word budget its going to look at every row if it has budget and will make it a 1 if it appears regardless how many times
+'''
+
 
 for singleDoc in documents:
   #Make a new word list for every document to then make it the space we need for columns for each document
@@ -56,19 +66,24 @@ for singleDoc in documents:
 
 print("Part one done")
 
-#OUR MATRIX WE make the same amount of Docuemnts with equal amount of indexes
+# # 2
+# We then use nested list comphrehension 
+'''
+  To build a matrix we have to understand that we must have one big list that for every row has a list with its own count of words 
+  DocMatrix = [ [doc1] ,  [doc2] ,  [doc3]  ,  [doc4] ]
+'''
 
 for _ in documents:
 
   docTermMatrix.append([0] * len(wordList))
 
 
+print("PART 2 done")
 
 #---------------------------------------------------------------------------------------------------------------------------
 
-#     #           STEP 2
+#     #           STEP 3
 
-print("PART 2 done")
 #DOCUMENT TERM WORD MATRIX 
 
     #COLUMN   WORD1 WORD2 WORD3 WORD4 WORD5 WORD6
@@ -85,6 +100,8 @@ print("PART 2 done")
 #DOC5
 
 #     DOCUMENTS USING RANGE TO ACCESS DOCUMENtMATRIX by row 
+
+
 for i in range(len(documents)):
   dummy = documents[i]
   #try to iterate through by Columns 
@@ -114,62 +131,8 @@ for i in range(len(documents)):
 print("Part 3 of Main codebase")
 print()
 
-#Test Outputs
-'''
-Its pairwise for cosine similarities!!!!
-
-Plan A:
-  1. Iterate through doctermMatrix
-
-  2. Use another loop to iterate through all the other rows so index + 1
-  
-
-'''
-fin = cosine_similarity(docTermMatrix)
 
 
-
-for index in range(len(fin)):
-
-  for index2 in range ( index+ 1, len(fin)):
-
-    input1 = fin[2].reshape(1,-1)
-    input2 = fin[400].reshape(1,-1)
-    output = cosine_similarity(input1,input2)
-
-
-
-# for i in fin[:4]:
-#   print(i)
-
-
-#STEPS
-
-# # 1
-# We split our documents from its number and grab the number of documents we have 
-    # We have 401 documents in cleaned_documents.csv ( column seperated Values)
-'''
-  We have to understand that in this process we look at all the words in the documents 
-  This helps us gather all distinct words that helps us add as a column 
-  For example,
-        Lets say we have the word budget its going to look at every row if it has budget and will make it a 1 if it appears regardless how many times
-'''
-
-# # 2
-# We then use nested list comphrehension 
-'''
-  To build a matrix we have to understand that we must have one big list that for every row has a list with its own count of words 
-  DocMatrix = [ [doc1] ,  [doc2] ,  [doc3]  ,  [doc4] ]
-'''
-
-# # 3
-# We have to then go through all all documents and understand what the outputs looks like
-'''
-  In our output we have to understand if our current Hard coded baby algo works 
-    To test,
-      I will start with document 1 and look at the number of 1's it shows if it shows a single zero that means i have a bug somewhere 
-      since it has only gathered words from document 1
-'''
 
 
 # # 4
@@ -189,8 +152,6 @@ COSINE SIMIALIRTY IS DEFINED :
     We have to see how to find the most common similarities by each document
 
 '''
-
-
 # Compare the pairwise cosine similarities and store the highest one
 # Use cosine_similarity([X], [Y]) to calculate the similarities between 2 vectors
 # --> Add your Python code here
@@ -199,3 +160,45 @@ COSINE SIMIALIRTY IS DEFINED :
 # Print the highest cosine similarity following the information below
 # The most similar documents are document 10 and document 100 with cosine similarity = x
 # --> Add your Python code here
+
+
+
+simlarities = cosine_similarity(docTermMatrix)
+doc1 = 0
+doc2 =0
+max_sim = 0
+for i in range(len(simlarities)):
+  for j in range(len(simlarities)):
+    if i != j:
+      if simlarities[i][j] > max_sim:
+        max_sim = simlarities[i][j]
+        doc1,doc2 = i,j
+
+
+
+print(doc1)
+print()
+print(doc2)
+
+print(documents[doc1])
+
+
+print()
+
+print(documents[doc2])
+
+
+
+print(simlarities[55][66])
+# Convert to percentage
+# percentage_similarity = 50 * (cosine_sim + 1)
+
+
+
+
+
+
+
+
+
+
