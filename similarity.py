@@ -38,7 +38,7 @@ wordList = []
 
 #     #           STEP 1
 # #goes through a single doc
-for singleDoc in documents:
+
 for singleDoc in documents:
   #Make a new word list for every document to then make it the space we need for columns for each document
   
@@ -68,22 +68,7 @@ for _ in documents:
 
 #     #           STEP 2
 
-
-'''
-Doctermmatrix has same amount of documents to counteract errors in cosine similarity
-
-    FIRST ITERATION OF BINARY CLASSIFICATION ALGO
-
-    1.Use document to iterate through all docs
-
-    2.then we need to iterate through a doc one by one 
-
-
-'''
-
-#FIRST ITERATION
-
-
+print("PART 2 done")
 #DOCUMENT TERM WORD MATRIX 
 
     #COLUMN   WORD1 WORD2 WORD3 WORD4 WORD5 WORD6
@@ -116,7 +101,7 @@ for i in range(len(documents)):
 
 
       
-print(docTermMatrix[0])
+
 
 
 
@@ -126,47 +111,36 @@ print(docTermMatrix[0])
 #   #Appending a list inside a list
 #   docTermMatrix.append([1 if i in wordList else 0 for single in documents for word in single[1:] for i in word.split(' ')])
 
-print("Part 2 of Main codebase")
+print("Part 3 of Main codebase")
+print()
 
 #Test Outputs
+'''
+Its pairwise for cosine similarities!!!!
 
+Plan A:
+  1. Iterate through doctermMatrix
 
+  2. Use another loop to iterate through all the other rows so index + 1
+  
 
+'''
 fin = cosine_similarity(docTermMatrix)
 
 
 
-print(fin)
+for index in range(len(fin)):
 
-# for i in docTermMatrix:
+  for index2 in range ( index+ 1, len(fin)):
 
+    input1 = fin[2].reshape(1,-1)
+    input2 = fin[400].reshape(1,-1)
+    output = cosine_similarity(input1,input2)
+
+
+
+# for i in fin[:4]:
 #   print(i)
-#   print()
-#   print(len(i))
-# test = docTermMatrix[1]
-# print(f'{" ".join(wordList[:7])}')
-#   print(i)
-#   print()
-#   print(len(i))
-# test = docTermMatrix[1]
-# print(f'{" ".join(wordList[:7])}')
-
-# for i in test[:7]:
-#   print(i, " ")
-# for i in test[:7]:
-#   print(i, " ")
-  
-
-
-
-
-
-
-#EXAMPLE FOR NESTED COMPREHENSION
-# strings = [ ['foo', 'bar'], ['baz', 'taz'], ['w', 'koko'] ]
-# test = [ (letter, idx) for idx, lst in enumerate(strings) for word in lst if len(word)>2 for letter in word]
-
-# print(test)
 
 
 #STEPS
@@ -215,8 +189,7 @@ COSINE SIMIALIRTY IS DEFINED :
     We have to see how to find the most common similarities by each document
 
 '''
-start_time = time.time()
-print(time.time()- start_time)
+
 
 # Compare the pairwise cosine similarities and store the highest one
 # Use cosine_similarity([X], [Y]) to calculate the similarities between 2 vectors
