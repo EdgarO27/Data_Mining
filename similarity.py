@@ -176,22 +176,13 @@ for i in range(len(simlarities)):
 
 
 
-print(doc1)
-print()
-print(doc2)
 
-print(documents[doc1])
-
-
-print()
-
-print(documents[doc2])
 
 
 
 print(simlarities[55][66])
-# Convert to percentage
-# percentage_similarity = 50 * (cosine_sim + 1)
+print(f'The most similar documents are {doc1+ 1} and {doc2+ 1} with cosine simliarity {simlarities[doc1][doc2]}.')
+
 
 
 
