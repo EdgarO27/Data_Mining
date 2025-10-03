@@ -29,7 +29,7 @@ pca_variance = []
 for i in range(3):
 #     # Create a new dataset by dropping the i-th feature
     reduced_data = df.drop(columns=[df.columns[i]])
-    print(reduced_data.columns)
+    
 #     # Run PCA on the reduced dataset
 #         # WE USE LEN SINCE REDUCED DATA HAS ONE COLUMN LESS THAN THE ORIGINAL DATA 
     pca = PCA(n_components=2)
@@ -44,16 +44,17 @@ for i in range(3):
     
 #     print(pca.explained_variance_ratio_)
 #     # pca_variance.append()
-
+    pca_var = {}
+    pca_var[df.c]
 #     #Use pca.explained_variance_ratio_[0] and df_features.columns[i] for that
 #     # --> add your Python code here
-    pca_variance.append([df.columns[i], pca.explained_variance_ratio_])
+    pca_variance.append([df.columns[i], pca.explained_variance_ratio_[0]])
 
 
 # Find the maximum PC1 variance
 # --> add your Python code here
 
-print(pca_variance[0])
+print(pca_variance)
 #Print results
 #Use the format: Highest PC1 variance found: ? when removing ?
 
