@@ -34,36 +34,36 @@ for i in range(num_features):
 #     # Run PCA on the reduced dataset
 #         # WE USE LEN SINCE REDUCED DATA HAS ONE COLUMN LESS THAN THE ORIGINAL DATA 
 # subtract one from num of features since every iteration has one col less to test 
-    pca = PCA(n_components=num_features-1)
+    pca = PCA(n_components= num_features-1)
 
     X = pca.fit_transform(reduced_data)
-    # print("This is the column that was dropped")
-    # print(df.columns[i])
-    # print()
-    # print(X)
 #     #Store PC1 variance and the feature removed
       
     
 #     print(pca.explained_variance_ratio_)
 #     # pca_variance.append()
-    print(pca.explained_variance_ratio_)
+
     pca_var[df.columns[i]] = np.max(pca.explained_variance_ratio_)
 #     #Use pca.explained_variance_ratio_[0] and df_features.columns[i] for that
-#     # --> add your Python code here
     # pca_variance.append([df.columns[i], pca.explained_variance_ratio_[0]])
-max_pca = pca_var[0] #use the first item to compare
+
+
+
+
+
+
+max_pca = pca_var[df.columns[0]] #use the first item to start Max comaprison
 feature ='' # attach the name 
-for index, data in enumerate(pca_var):
-
-    if pca_var[i] > max_pca:
-
-        max_pca = pca_var[i]
-    
     
 # Find the maximum PC1 variance
-# --> add your Python code here
+for i in range(len(pca_var)):
 
-print(max_pca)
+    if pca_var[df.columns[i]] > max_pca:
+
+        max_pca = pca_var[df.columns[i]]
+        feature = df.columns[i]
+
+print(f"The highest pc1 is: {max_pca} and its when column: {feature} is removed.")
 #Print results
 #Use the format: Highest PC1 variance found: ? when removing ?
 
